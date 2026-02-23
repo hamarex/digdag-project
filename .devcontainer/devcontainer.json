@@ -1,0 +1,35 @@
+{
+  "name": "Digdag Development",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "devcontainer",
+  "workspaceFolder": "/workspace",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-pg"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+
+  "forwardPorts": [65432, 5433],
+  "portsAttributes": {
+    "65432": {
+      "label": "Digdag Server",
+      "onAutoForward": "notify"
+    },
+    "5433": {
+      "label": "PostgreSQL",
+      "onAutoForward": "ignore"
+    }
+  },
+
+  "postCreateCommand": "digdag --version",
+
+  "remoteUser": "vscode"
+}

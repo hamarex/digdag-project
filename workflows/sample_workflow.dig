@@ -1,0 +1,17 @@
+timezone: Asia/Tokyo
+
+_export:
+  pg:
+    host: postgres
+    port: 5432
+    database: digdag_user
+    user: digdag
+
++setup:
+  echo>: "Starting sample workflow"
+
++create_and_insert:
+  pg>: queries/sample_query.sql
+
++verify:
+  echo>: "Workflow completed successfully"
