@@ -10,6 +10,9 @@ _export:
 +setup:
   echo>: "Starting sample workflow"
 
++python_task:
+  py>: sample_python.SampleTask.hello
+
 +create_and_insert:
   pg>: queries/sample_query.sql
 

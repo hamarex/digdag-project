@@ -1,11 +1,12 @@
-FROM amazoncorretto:8
+FROM amazoncorretto:8-al2023
 
 # digdag バージョン
 ENV DIGDAG_VERSION=0.10.5
 
 # 必要なパッケージをインストール
-RUN yum install -y curl bash postgresql gettext && \
-    yum clean all
+RUN dnf install -y bash postgresql15 gettext python3.11 python3-pip && \
+    dnf clean all && \
+    ln -s /usr/bin/python3.11 /usr/local/bin/python
 
 # digdagをダウンロード
 RUN curl -o /usr/local/bin/digdag --create-dirs -L "https://dl.digdag.io/digdag-${DIGDAG_VERSION}" \
