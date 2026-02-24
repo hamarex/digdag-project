@@ -85,6 +85,84 @@ digdag start sample sample_workflow --session now --endpoint http://digdag-serve
 
 ---
 
+## Digdag 主要コマンド（devcontainer → digdag-server）
+
+devcontainer内のターミナルで実行するコマンド一覧です。
+
+### プロジェクト管理
+
+```bash
+# プロジェクトを作る（ローカル）
+digdag init <project_name>
+
+# ワークフローをサーバーにプッシュ
+digdag push <project_name> --endpoint http://digdag-server:65432
+
+# プロジェクト一覧
+digdag projects --endpoint http://digdag-server:65432
+
+# ワークフロー一覧
+digdag workflows <project_name> --endpoint http://digdag-server:65432
+```
+
+### シークレット管理
+
+```bash
+# シークレットを設定（PostgreSQL用など）
+digdag secrets --project <project_name> --set pg.password=digdag_secure_password_2026 --endpoint http://digdag-server:65432
+
+# シークレット一覧
+digdag secrets --project <project_name> --endpoint http://digdag-server:65432
+```
+
+### ワークフロー実行
+
+```bash
+# ワークフローを即座に実行
+digdag start <project_name> <workflow_name> --endpoint http://digdag-server:65432
+
+# 特定のセッション時刻で実行
+digdag start <project_name> <workflow_name> --session "2026-02-24 12:00:00" --endpoint http://digdag-server:65432
+
+# セッション時刻を「現在」で実行
+digdag start <project_name> <workflow_name> --session now --endpoint http://digdag-server:65432
+```
+
+### ログ確認
+
+```bash
+# セッション一覧を表示
+digdag sessions --endpoint http://digdag-server:65432
+
+# 特定セッションのログを表示
+digdag logs <session_id> --endpoint http://digdag-server:65432
+
+# Attemptのログを表示（より詳細）
+digdag log <attempt_id> --endpoint http://digdag-server:65432
+```
+
+### スケジュール管理
+
+```bash
+# スケジュール一覧を確認
+digdag schedules --endpoint http://digdag-server:65432
+```
+
+### ローカル実行（デバッグ用）
+
+```bash
+# サーバーにプッシュせずにローカルで実行
+digdag run <workflow_file.dig>
+
+# パラメータを渡す
+digdag run <workflow_file.dig> -p key=value
+
+# ログレベルを指定
+digdag run <workflow_file.dig> --log-level debug
+```
+
+---
+
 ## Digdag UI
 
 ```

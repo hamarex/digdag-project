@@ -19,10 +19,6 @@
 
   "forwardPorts": [5433],
   "portsAttributes": {
-    "65432": {
-      "label": "Digdag Server",
-      "onAutoForward": "notify"
-    },
     "5433": {
       "label": "PostgreSQL",
       "onAutoForward": "ignore"
