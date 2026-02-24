@@ -79,6 +79,7 @@ digdag secrets --project sample --set pg.password=digdag_secure_password_2026 --
 
 ```bash
 cd /workspace/workflows
+digdag init sample
 digdag push sample --endpoint http://digdag-server:65432
 digdag start sample sample_workflow --session now --endpoint http://digdag-server:65432
 ```
