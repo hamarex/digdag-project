@@ -17,7 +17,7 @@
     }
   },
 
-  "forwardPorts": [65432, 5433],
+  "forwardPorts": [5433],
   "portsAttributes": {
     "65432": {
       "label": "Digdag Server",
